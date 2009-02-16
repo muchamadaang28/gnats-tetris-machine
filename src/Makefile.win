@@ -1,0 +1,63 @@
+# Project: tetris
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = obj/tetris_private.res
+OBJ  = obj/dataload.o obj/drawing.o obj/init.o obj/input.o obj/logic.o obj/main.o obj/shutdown.o obj/timer.o obj/variables.o obj/screen_gameplay.o obj/sound.o $(RES)
+LINKOBJ  = obj/dataload.o obj/drawing.o obj/init.o obj/input.o obj/logic.o obj/main.o obj/shutdown.o obj/timer.o obj/variables.o obj/screen_gameplay.o obj/sound.o $(RES)
+LIBS =  -L"C:/Dev-Cpp/lib" -mwindows -lmingw32 -lSDLmain -lSDL -lfreeglut -lglu32 -lopengl32 -lSDL_image -lwinmm -lgdi32 -lfmod  
+INCS =  -I"C:/Dev-Cpp/include" 
+CXXINCS =  -I"C:/Dev-Cpp/lib/gcc/mingw32/3.4.2/include"  -I"C:/Dev-Cpp/include/c++/3.4.2/backward"  -I"C:/Dev-Cpp/include/c++/3.4.2/mingw32"  -I"C:/Dev-Cpp/include/c++/3.4.2"  -I"C:/Dev-Cpp/include" 
+BIN  = ../gnatstetrismachine.exe
+CXXFLAGS = $(CXXINCS) -DFREEGLUT_STATIC   -ansi
+CFLAGS = $(INCS) -Dmain=SDL_main -DFREEGLUT_STATIC   -ansi
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before ../gnatstetrismachine.exe all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o "..\gnatstetrismachine.exe" $(LIBS)
+
+obj/dataload.o: dataload.c
+	$(CC) -c dataload.c -o obj/dataload.o $(CFLAGS)
+
+obj/drawing.o: drawing.c
+	$(CC) -c drawing.c -o obj/drawing.o $(CFLAGS)
+
+obj/init.o: init.c
+	$(CC) -c init.c -o obj/init.o $(CFLAGS)
+
+obj/input.o: input.c
+	$(CC) -c input.c -o obj/input.o $(CFLAGS)
+
+obj/logic.o: logic.c
+	$(CC) -c logic.c -o obj/logic.o $(CFLAGS)
+
+obj/main.o: main.c
+	$(CC) -c main.c -o obj/main.o $(CFLAGS)
+
+obj/shutdown.o: shutdown.c
+	$(CC) -c shutdown.c -o obj/shutdown.o $(CFLAGS)
+
+obj/timer.o: timer.c
+	$(CC) -c timer.c -o obj/timer.o $(CFLAGS)
+
+obj/variables.o: variables.c
+	$(CC) -c variables.c -o obj/variables.o $(CFLAGS)
+
+obj/screen_gameplay.o: screen_gameplay.c
+	$(CC) -c screen_gameplay.c -o obj/screen_gameplay.o $(CFLAGS)
+
+obj/sound.o: sound.c
+	$(CC) -c sound.c -o obj/sound.o $(CFLAGS)
+
+obj/tetris_private.res: tetris_private.rc 
+	$(WINDRES) -i tetris_private.rc --input-format=rc -o obj/tetris_private.res -O coff  --include-dir C:/DOCUME~1/nathan/Desktop/GNATST~1/src
